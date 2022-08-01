@@ -1,7 +1,5 @@
-import type { Selector } from '../';
-import { Comparator } from '../';
-import type { CompareArgs } from '../util';
-import { compareValues } from './';
+import { Comparator, compareValues, type Selector } from "./";
+import type { CompareArgs } from "./util";
 
 /**
  * Compares two values using the specified functions to calculate the result of
@@ -26,7 +24,12 @@ export function compareValuesBy<T>(a: T, B: T, selector: Selector<T>): number;
  * and `b` and return objects of type `K` which are then being ompared with the
  * given `comparator`.
  */
-export function compareValuesBy<T, K>(a: T, b: T, comparator: Comparator<K>, selector: (value: T) => K): number;
+export function compareValuesBy<T, K>(
+	a: T,
+	b: T,
+	comparator: Comparator<K>,
+	selector: (value: T) => K
+): number;
 export function compareValuesBy<T, K>(a: T, b: T, ...args: CompareArgs<T, K>): number {
 	if (Array.isArray(args[0])) {
 		const selectors: Selector<T>[] = args[0];

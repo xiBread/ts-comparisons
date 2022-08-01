@@ -1,7 +1,5 @@
-import { isDeepStrictEqual } from 'util';
-import type { Comparable } from '../';
-import { Comparator } from '../';
-import { naturalOrder } from './';
+import { isDeepStrictEqual } from "util";
+import { Comparator, naturalOrder, type Comparable } from "./";
 
 /**
  * Extends the given `comparator` of non-nullable values to a Comparator of
@@ -17,7 +15,7 @@ export function nullsFirst<T extends Comparable<T>>(): Comparator<T | null>;
 export function nullsFirst<T>(comparator?: Comparator<T>): Comparator<T | null> {
 	if (comparator instanceof Comparator) {
 		return new (class extends Comparator<T> {
-			public compare(a: T, b: T): number {
+			public override compare(a: T, b: T): number {
 				if (isDeepStrictEqual(a, b)) return 0;
 				if (a === null) return -1;
 				if (b === null) return 1;
