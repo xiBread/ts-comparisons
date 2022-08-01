@@ -1,7 +1,5 @@
-import type { Selector } from '../';
-import { Comparator } from '../Comparator';
-import type { CompareArgs } from '../util';
-import { compareValuesBy } from './';
+import { Comparator, compareValuesBy, type Selector } from ".";
+import type { CompareArgs } from "./util";
 
 /**
  * Creates a {@link Comparator} using the sequence of functions to calculate a
@@ -23,10 +21,13 @@ export function compareBy<T>(selector: Selector<T>): Comparator<T>;
  * being compared and then applying the specified `comparator` to compare
  * transformed values.
  */
-export function compareBy<T, K>(comparator: Comparator<K>, selector: (value: T) => K): Comparator<T>;
+export function compareBy<T, K>(
+	comparator: Comparator<K>,
+	selector: (value: T) => K
+): Comparator<T>;
 export function compareBy<T, K>(...args: CompareArgs<T, K>): Comparator<T> {
 	return new (class extends Comparator<T> {
-		public compare(a: T, b: T): number {
+		public override compare(a: T, b: T): number {
 			if (Array.isArray(args[0])) {
 				return compareValuesBy(a, b, ...args[0]);
 			}

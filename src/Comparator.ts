@@ -1,5 +1,5 @@
-import { compareValuesBy } from './';
-import { NaturalOrderComparator, ReversedComparator, ReverseOrderComparator } from './util';
+import { compareValuesBy } from "./";
+import { NaturalOrderComparator, ReversedComparator, ReverseOrderComparator } from "./util";
 
 export type Selector<T> = (value: T) => Comparable<unknown> | null;
 
@@ -35,11 +35,11 @@ export abstract class Comparator<T> {
 	 * is applied only when the former considered values equal.
 	 */
 	public then(comparator: Comparator<T>): Comparator<T> {
-		const qualifiedThis = this;
+		const self = this;
 
 		return new (class extends Comparator<T> {
-			public compare(a: T, b: T): number {
-				const previousCompare = qualifiedThis.compare(a, b);
+			public override compare(a: T, b: T): number {
+				const previousCompare = self.compare(a, b);
 
 				return previousCompare !== 0 ? previousCompare : comparator.compare(a, b);
 			}
@@ -60,11 +60,11 @@ export abstract class Comparator<T> {
 	 */
 	public thenBy<K>(comparator: Comparator<K>, selector: (value: T) => K): Comparator<T>;
 	public thenBy<K>($1: Selector<T> | Comparator<K>, $2?: (value: T) => K): Comparator<T> {
-		const qualifiedThis = this;
+		const self = this;
 
 		return new (class extends Comparator<T> {
-			public compare(a: T, b: T): number {
-				const previousCompare = qualifiedThis.compare(a, b);
+			public override compare(a: T, b: T): number {
+				const previousCompare = self.compare(a, b);
 
 				if (previousCompare !== 0) {
 					return previousCompare;
@@ -92,12 +92,15 @@ export abstract class Comparator<T> {
 	 * values and then compares them with the given `comparator`.
 	 */
 	public thenByDescending<K>(comparator: Comparator<K>, selector: (value: T) => K): Comparator<T>;
-	public thenByDescending<K>($1: Selector<T> | Comparator<K>, $2?: (value: T) => K): Comparator<T> {
-		const qualifiedThis = this;
+	public thenByDescending<K>(
+		$1: Selector<T> | Comparator<K>,
+		$2?: (value: T) => K
+	): Comparator<T> {
+		const self = this;
 
 		return new (class extends Comparator<T> {
-			public compare(a: T, b: T): number {
-				const previousCompare = qualifiedThis.compare(a, b);
+			public override compare(a: T, b: T): number {
+				const previousCompare = self.compare(a, b);
 
 				if (previousCompare !== 0) {
 					return previousCompare;
@@ -117,11 +120,11 @@ export abstract class Comparator<T> {
 	 * function to calculate a result of comparison.
 	 */
 	public thenComparator(comparison: (a: T, b: T) => number): Comparator<T> {
-		const qualifiedThis = this;
+		const self = this;
 
 		return new (class extends Comparator<T> {
-			public compare(a: T, b: T): number {
-				const previousCompare = qualifiedThis.compare(a, b);
+			public override compare(a: T, b: T): number {
+				const previousCompare = self.compare(a, b);
 
 				return previousCompare !== 0 ? previousCompare : comparison(a, b);
 			}
@@ -133,11 +136,11 @@ export abstract class Comparator<T> {
 	 * is applied only when the former considered values equal.
 	 */
 	public thenDescending(comparator: Comparator<T>): Comparator<T> {
-		const qualifiedThis = this;
+		const self = this;
 
 		return new (class extends Comparator<T> {
-			public compare(a: T, b: T): number {
-				const previousCompare = qualifiedThis.compare(a, b);
+			public override compare(a: T, b: T): number {
+				const previousCompare = self.compare(a, b);
 
 				return previousCompare !== 0 ? previousCompare : comparator.compare(b, a);
 			}

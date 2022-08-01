@@ -1,5 +1,5 @@
-import type { Comparable, Comparator } from '../';
-import { NaturalOrderComparator } from '../util';
+import type { Comparable, Comparator } from "../";
+import { NaturalOrderComparator } from "../util";
 
 /**
  * Returns a Comparator that compares {@link Comparable} objects in natural

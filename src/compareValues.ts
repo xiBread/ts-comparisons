@@ -1,5 +1,5 @@
-import { isDeepStrictEqual } from 'util';
-import type { Comparable } from '../';
+import { isDeepStrictEqual } from "util";
+import type { Comparable } from "../";
 
 /**
  * Compares two nullable {@link Comparable} values. `null` is considered less

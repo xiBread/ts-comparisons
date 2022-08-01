@@ -1,9 +1,9 @@
 {
 	"name": "ts-comparisons",
-	"version": "1.0.0",
-	"description": "A port of Kotlin's Comparisons library.",
+	"version": "1.0.2",
+	"description": "A port of Kotlin's and Java's Comparisons API.",
 	"main": "dist/index.js",
-	"typings": "dist/typings/index.d.ts",
+	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "rimraf dist && tsc --build",
 		"style": "npm run lint:fix && prettier",
@@ -15,20 +15,23 @@
 	"license": "MIT",
 	"keywords": [
 		"kotlin",
+		"java",
 		"port",
-		"compare",
+		"api",
+		"util",
 		"comparison",
 		"ts",
-		"typescript"
+		"typescript",
+		"node"
 	],
 	"devDependencies": {
-		"@types/node": "^16.11.9",
-		"@typescript-eslint/eslint-plugin": "^5.4.0",
-		"@typescript-eslint/parser": "^5.4.0",
-		"eslint": "^8.2.0",
-		"eslint-config-prettier": "^8.3.0",
-		"prettier": "^2.4.1",
-		"tslib": "^2.3.1",
-		"typescript": "^4.5.2"
+		"@types/node": "^18.6.3",
+		"@typescript-eslint/eslint-plugin": "^5.31.0",
+		"@typescript-eslint/parser": "^5.31.0",
+		"eslint": "^8.21.0",
+		"eslint-config-prettier": "^8.5.0",
+		"prettier": "^2.7.1",
+		"tslib": "^2.4.0",
+		"typescript": "^4.7.4"
 	}
 }
